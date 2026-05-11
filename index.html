@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One4Live V2.3 Final</title>
+  <meta name="description" content="One4Live V2.3 Final - Universal Streamer Intelligence." />
+  <style>
+    :root {
+      --bg: #080f27;
+      --bg2: #050816;
+      --primary: #a155fb;
+      --secondary: #02cdfd;
+      --accent: #10b981;
+      --text: #f6f8ff;
+      --muted: #aab6d8;
+      --line: rgba(255,255,255,.14);
+      --glass: rgba(12,24,58,.62);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(161,85,251,.32), transparent 30%),
+        radial-gradient(circle at 80% 14%, rgba(2,205,253,.22), transparent 28%),
+        linear-gradient(180deg, var(--bg), var(--bg2) 58%, var(--bg));
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: linear-gradient(to bottom, #000, transparent 78%);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(115deg, transparent, rgba(2,205,253,.08), transparent);
+      animation: scan 8s linear infinite;
+      z-index: -1;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8,15,39,.72);
+      backdrop-filter: blur(22px);
+    }
+
+    .nav-inner {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+      border-radius: 14px;
+      filter: drop-shadow(0 0 18px rgba(2,205,253,.42));
+    }
+
+    .brand strong { display: block; font-size: 16px; line-height: 1; }
+    .brand span { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: #d3dcf7;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .nav-links a { opacity: .78; transition: .2s ease; }
+    .nav-links a:hover { opacity: 1; color: var(--secondary); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-toggle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+    }
+
+    .lang-toggle button {
+      width: 42px;
+      height: 30px;
+      border: 0;
+      border-radius: 999px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      font-weight: 1000;
+    }
+
+    html[data-lang="th"] [data-set-lang="th"],
+    html[data-lang="en"] [data-set-lang="en"] {
+      color: #06101f;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      box-shadow: 0 0 24px rgba(2,205,253,.45);
+    }
+
+    .mini-download {
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      font-size: 13px;
+      font-weight: 1000;
+      box-shadow: 0 0 30px rgba(161,85,251,.34);
+      transition: .24s ease;
+    }
+
+    .mini-download:hover { transform: translateY(-2px); box-shadow: 0 0 42px rgba(2,205,253,.42); }
+
+    .hero {
+      min-height: calc(100vh - 76px);
+      display: grid;
+      align-items: center;
+      padding: 72px 0 58px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      align-items: center;
+      gap: 56px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(46px, 7vw, 86px);
+      line-height: .94;
+      letter-spacing: 0;
+      text-wrap: balance;
+      background: linear-gradient(105deg, #fff 5%, var(--secondary) 42%, var(--primary) 76%, #fff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 26px rgba(2,205,253,.18));
+    }
+
+    .hero p {
+      margin: 24px 0 0;
+      max-width: 640px;
+      color: #c5d0ef;
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      margin-top: 34px;
+      display: grid;
+      gap: 13px;
+      justify-items: start;
+    }
+
+    .download {
+      position: relative;
+      min-height: 70px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 32px;
+      border-radius: 18px;
+      overflow: hidden;
+      color: white;
+      font-size: clamp(15px, 2vw, 20px);
+      font-weight: 1000;
+      letter-spacing: .02em;
+      background: linear-gradient(135deg, rgba(161,85,251,.98), rgba(2,205,253,.98));
+      box-shadow: 0 0 0 1px rgba(255,255,255,.2) inset, 0 0 42px rgba(161,85,251,.48), 0 0 70px rgba(2,205,253,.22);
+      transition: .26s ease;
+    }
+
+    .download::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent);
+      transform: translateX(-140%);
+      animation: shine 3.4s ease-in-out infinite;
+    }
+
+    .download span { position: relative; z-index: 1; }
+    .download:hover { transform: translateY(-4px) scale(1.015); box-shadow: 0 0 54px rgba(2,205,253,.46), 0 0 76px rgba(161,85,251,.38); }
+
+    .download-row {
+      display: flex;
+      align-items: stretch;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .download.secondary {
+      min-height: 70px;
+      background: linear-gradient(135deg, rgba(16,185,129,.92), rgba(2,205,253,.76));
+      box-shadow: 0 0 0 1px rgba(255,255,255,.18) inset, 0 0 36px rgba(16,185,129,.34);
+    }
+
+    .download-paths {
+      display: grid;
+      gap: 8px;
+      max-width: 680px;
+      color: #a8b7dd;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .download-paths strong {
+      color: var(--secondary);
+    }
+
+    .trust {
+      max-width: 650px;
+      color: #a8b7dd;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .proofs {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 660px;
+    }
+
+    .proof {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(255,255,255,.055);
+      backdrop-filter: blur(16px);
+    }
+
+    .proof strong { display: block; font-size: 25px; line-height: 1; }
+    .proof span { display: block; margin-top: 7px; color: var(--muted); font-size: 12px; font-weight: 900; text-transform: uppercase; }
+
+    .device-wrap { position: relative; perspective: 1100px; }
+    .device-glow {
+      position: absolute;
+      inset: 8% 2%;
+      border-radius: 44px;
+      background: linear-gradient(135deg, rgba(161,85,251,.48), rgba(2,205,253,.34));
+      filter: blur(50px);
+      animation: pulse 4.6s ease-in-out infinite;
+    }
+
+    .device {
+      position: relative;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 30px;
+      padding: 13px;
+      background: linear-gradient(145deg, rgba(255,255,255,.16), rgba(255,255,255,.04)), rgba(8,15,39,.76);
+      box-shadow: 0 28px 94px rgba(0,0,0,.54), 0 0 0 1px rgba(2,205,253,.14) inset;
+      transform: rotateX(7deg) rotateY(-9deg);
+      animation: floatDevice 6s ease-in-out infinite;
+    }
+
+    .device-bar {
+      height: 34px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 12px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--secondary);
+      box-shadow: 0 0 18px currentColor;
+    }
+
+    .dot:nth-child(2) { background: var(--primary); }
+    .dot:nth-child(3) { background: var(--accent); }
+
+    .device img {
+      width: 100%;
+      min-height: 360px;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+    }
+
+    section { padding: 96px 0; }
+
+    .section-head {
+      max-width: 780px;
+      display: grid;
+      gap: 15px;
+      margin-bottom: 38px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .platform, .feature, .console, .final-cta {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+      backdrop-filter: blur(18px);
+      box-shadow: 0 24px 80px rgba(0,0,0,.28);
+    }
+
+    .platform {
+      position: relative;
+      min-height: 220px;
+      padding: 24px;
+      border-radius: 22px;
+      overflow: hidden;
+      transition: .26s ease;
+    }
+
+    .platform:hover, .feature:hover { transform: translateY(-8px); border-color: rgba(2,205,253,.44); }
+
+    .platform::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -46% -20%;
+      height: 130px;
+      background: var(--platform);
+      filter: blur(56px);
+      opacity: .34;
+    }
+
+    .platform h3 { margin: 0 0 12px; font-size: 25px; }
+    .platform p, .feature p { margin: 0; color: #bfcae8; line-height: 1.65; }
+
+    .tag {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: var(--platform);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 1000;
+      box-shadow: 0 0 28px var(--platform);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .feature {
+      min-height: 250px;
+      padding: 22px;
+      border-radius: 22px;
+      transition: .26s ease;
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 16px;
+      color: var(--secondary);
+      font-weight: 1000;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, rgba(161,85,251,.28), rgba(2,205,253,.18));
+    }
+
+    .feature h3 { margin: 0 0 12px; font-size: 19px; line-height: 1.18; }
+    .feature p { font-size: 14px; }
+
+    .showcase {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .console {
+      border-radius: 26px;
+      padding: 26px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+    }
+
+    .row:last-child { border-bottom: 0; }
+    .status { width: 12px; height: 12px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 18px var(--accent); }
+    .row strong { display: block; font-size: 15px; }
+    .row span:not(.status):not(.metric) { display: block; margin-top: 4px; color: var(--muted); font-size: 13px; }
+    .metric { color: var(--secondary); font-weight: 1000; }
+
+    .screen-carousel {
+      position: relative;
+      display: grid;
+      gap: 18px;
+    }
+
+    .screen-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
+    }
+
+    .screen-track {
+      display: flex;
+      transition: transform .55s cubic-bezier(.22,.8,.22,1);
+      will-change: transform;
+    }
+
+    .screen-card {
+      position: relative;
+      flex: 0 0 100%;
+      display: grid;
+      gap: 18px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.032));
+      box-shadow: 0 28px 94px rgba(0,0,0,.36), 0 0 54px rgba(2,205,253,.08);
+      overflow: hidden;
+    }
+
+    .screen-bubbles {
+      position: absolute;
+      z-index: 3;
+      top: 22px;
+      right: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .floating-bubble {
+      min-width: 88px;
+      min-height: 42px;
+      display: grid;
+      place-items: center;
+      padding: 0 14px;
+      border: 1px solid rgba(2,205,253,.36);
+      border-radius: 999px;
+      color: #eaf9ff;
+      background: rgba(7, 16, 43, .72);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 0 28px rgba(2,205,253,.22), 0 12px 34px rgba(0,0,0,.34);
+      font-size: 12px;
+      font-weight: 1000;
+      animation: bubbleFloat 4.8s ease-in-out infinite;
+    }
+
+    .floating-bubble:nth-child(2) {
+      border-color: rgba(161,85,251,.44);
+      box-shadow: 0 0 28px rgba(161,85,251,.25), 0 12px 34px rgba(0,0,0,.34);
+      animation-delay: -.9s;
+    }
+
+    .floating-bubble:nth-child(3) {
+      border-color: rgba(16,185,129,.42);
+      box-shadow: 0 0 28px rgba(16,185,129,.22), 0 12px 34px rgba(0,0,0,.34);
+      animation-delay: -1.8s;
+    }
+
+    .screen-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(2,205,253,.18), transparent 24%, transparent 70%, rgba(161,85,251,.18));
+    }
+
+    .screen-meta {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 4px 4px 0;
+    }
+
+    .screen-meta h3 {
+      margin: 0;
+      font-size: clamp(20px, 3vw, 30px);
+      line-height: 1;
+    }
+
+    .screen-meta p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .screen-index {
+      flex: 0 0 auto;
+      color: var(--secondary);
+      font-size: 13px;
+      font-weight: 1000;
+      letter-spacing: .12em;
+    }
+
+    .screen-card img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 20px 70px rgba(0,0,0,.42);
+    }
+
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .slider-btn {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 16px;
+      color: white;
+      background: rgba(255,255,255,.07);
+      box-shadow: 0 0 24px rgba(2,205,253,.12);
+      cursor: pointer;
+      transition: .24s ease;
+    }
+
+    .slider-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(2,205,253,.48);
+      color: var(--secondary);
+      box-shadow: 0 0 34px rgba(2,205,253,.24);
+    }
+
+    .slider-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 6px;
+    }
+
+    .slider-dot {
+      width: 10px;
+      height: 10px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,.26);
+      cursor: pointer;
+      transition: .24s ease;
+    }
+
+    .slider-dot.is-active {
+      width: 34px;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      box-shadow: 0 0 22px rgba(2,205,253,.36);
+    }
+
+    .final-cta {
+      position: relative;
+      padding: 76px 40px;
+      border-radius: 34px;
+      text-align: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(161,85,251,.32), transparent 35%),
+        radial-gradient(circle at 80% 20%, rgba(2,205,253,.24), transparent 35%),
+        linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+    }
+
+    .final-cta h2 { margin: 0 auto 18px; max-width: 760px; }
+    .final-cta p { margin: 0 auto 30px; max-width: 720px; color: #c4ceec; font-size: 18px; line-height: 1.7; }
+
+    footer {
+      padding: 34px 0 46px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @keyframes scan {
+      0% { transform: translateX(-80%); opacity: 0; }
+      24%, 70% { opacity: 1; }
+      100% { transform: translateX(80%); opacity: 0; }
+    }
+
+    @keyframes shine {
+      0%, 45% { transform: translateX(-140%); }
+      68%, 100% { transform: translateX(140%); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(.96); opacity: .68; }
+      50% { transform: scale(1.05); opacity: .96; }
+    }
+
+    @keyframes floatDevice {
+      0%, 100% { transform: rotateX(7deg) rotateY(-9deg) translateY(0); }
+      50% { transform: rotateX(5deg) rotateY(-6deg) translateY(-14px); }
+    }
+
+    @keyframes bubbleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; }
+    }
+
+    @media (max-width: 980px) {
+      .nav-links { display: none; }
+      .hero-grid, .showcase { grid-template-columns: 1fr; }
+      .device { transform: none; }
+      .platform-grid, .features { grid-template-columns: 1fr 1fr; }
+      .screen-meta { align-items: start; flex-direction: column; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(100% - 28px, var(--max)); }
+      .nav-inner { height: 70px; }
+      .brand span { display: none; }
+      .mini-download { display: none; }
+      .hero { min-height: auto; padding: 54px 0 44px; }
+      .proofs, .platform-grid, .features { grid-template-columns: 1fr; }
+      .device img { min-height: 230px; }
+      section { padding: 70px 0; }
+      .download { width: 100%; min-height: 64px; padding: 0 18px; text-align: center; }
+      .download-row { width: 100%; }
+      .screen-card { padding: 12px; border-radius: 20px; }
+      .screen-card img { border-radius: 14px; }
+      .screen-bubbles { display: none; }
+      .slider-btn { width: 42px; height: 42px; }
+      .final-cta { padding: 54px 20px; border-radius: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="One4Live home">
+        <img src="assets/logo_ui_transparent.png" alt="One4Live logo" />
+        <span><strong>One4Live</strong><span data-i18n="brandSub">V2.3 Final</span></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#platforms" data-i18n="navPlatforms">Platforms</a>
+        <a href="#features" data-i18n="navFeatures">Features</a>
+        <a href="#screens" data-i18n="navScreens">Screens</a>
+        <a href="#showcase" data-i18n="navShowcase">Dashboard</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-toggle" aria-label="Language toggle">
+          <button type="button" data-set-lang="th">TH</button>
+          <button type="button" data-set-lang="en">EN</button>
+        </div>
+        <a class="mini-download" href="https://drive.google.com/file/d/1HQGCmLu6CsuOTcp0d1RuLARGWPWdR1xU/view?usp=sharing" target="_blank" rel="noopener" data-i18n="navDownload">Download</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1 data-i18n="heroTitle">The Only AI Assistant Your Stream Ever Needs.</h1>
+          <p data-i18n="heroText">Unify YouTube, Twitch, and TikTok chat with live AI translation, adaptive Thai-Karaoke TTS, and interactive SFX built for serious streamers.</p>
+          <div class="hero-actions">
+            <div class="download-row">
+              <a class="download" href="https://drive.google.com/file/d/1HQGCmLu6CsuOTcp0d1RuLARGWPWdR1xU/view?usp=sharing" target="_blank" rel="noopener"><span data-i18n="downloadGoogle">DOWNLOAD FROM GOOGLE DRIVE</span></a>
+              <a class="download secondary" href="https://www.mediafire.com/file/rc0dhgi33v2l5sm/One4Live.zip/file" target="_blank" rel="noopener"><span data-i18n="downloadMedia">DOWNLOAD MIRROR: MEDIAFIRE</span></a>
+            </div>
+            <div class="download-paths">
+              <div><strong data-i18n="googleLabel">Google Drive path:</strong> https://drive.google.com/file/d/1HQGCmLu6CsuOTcp0d1RuLARGWPWdR1xU/view?usp=sharing</div>
+              <div><strong data-i18n="mediaLabel">MediaFire path:</strong> https://www.mediafire.com/file/rc0dhgi33v2l5sm/One4Live.zip/file</div>
+            </div>
+            <div class="trust" data-i18n="trustNote">🛡️ 100% Protected Logic. If Windows Defender flags the app, select 'Run Anyway' to proceed.</div>
+          </div>
+          <div class="proofs">
+            <div class="proof"><strong>3</strong><span data-i18n="proofOne">Live Platforms</span></div>
+            <div class="proof"><strong>-20%</strong><span data-i18n="proofTwo">Karaoke TTS Speed</span></div>
+            <div class="proof"><strong>AI</strong><span data-i18n="proofThree">Translation + Voice</span></div>
+          </div>
+        </div>
+
+        <div class="device-wrap">
+          <div class="device-glow"></div>
+          <div class="device">
+            <div class="device-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <img src="assets/dashboard.png" alt="One4Live dashboard preview" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screens">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="screensTitle">Scroll through the real One4Live interface.</h2>
+          <p data-i18n="screensText">These screenshots show the actual streamer workflow: dashboard, soundboard, system configuration, OBS tools, karaoke rules, and SFX controls.</p>
+        </div>
+
+        <div class="screen-carousel" aria-label="One4Live interface screenshots">
+          <div class="screen-frame">
+            <div class="screen-bubbles" aria-hidden="true">
+              <span class="floating-bubble">LIVE CHAT</span>
+              <span class="floating-bubble">AI TTS</span>
+              <span class="floating-bubble">SFX READY</span>
+            </div>
+
+            <div class="screen-track">
+              <article class="screen-card">
+                <div class="screen-meta">
+                  <div>
+                    <h3 data-i18n="screenOneTitle">Live Dashboard</h3>
+                    <p data-i18n="screenOneText">Multi-platform chat control with YouTube, Twitch, TikTok, live caption, translation, and TTS queue status.</p>
+                  </div>
+                  <span class="screen-index">01 / 04</span>
+                </div>
+                <img src="assets/dashboard-1.png" alt="One4Live live dashboard screen" />
+              </article>
+
+              <article class="screen-card">
+                <div class="screen-meta">
+                  <div>
+                    <h3 data-i18n="screenTwoTitle">Manual Soundboard</h3>
+                    <p data-i18n="screenTwoText">A clean soundboard surface for fast manual control and emergency stop during live moments.</p>
+                  </div>
+                  <span class="screen-index">02 / 04</span>
+                </div>
+                <img src="assets/dashboard-2.png" alt="One4Live manual soundboard screen" />
+              </article>
+
+              <article class="screen-card">
+                <div class="screen-meta">
+                  <div>
+                    <h3 data-i18n="screenThreeTitle">System Configuration</h3>
+                    <p data-i18n="screenThreeText">AI engine, voice selection, translation direction, profanity filter, donation links, and karaoke mode in one control room.</p>
+                  </div>
+                  <span class="screen-index">03 / 04</span>
+                </div>
+                <img src="assets/dashboard-3.png" alt="One4Live system configuration screen" />
+              </article>
+
+              <article class="screen-card">
+                <div class="screen-meta">
+                  <div>
+                    <h3 data-i18n="screenFourTitle">OBS, Karaoke Rules, and SFX</h3>
+                    <p data-i18n="screenFourText">Browser source setup, phonetic fixer rules, member-only SFX triggers, cooldowns, and system metrics.</p>
+                  </div>
+                  <span class="screen-index">04 / 04</span>
+                </div>
+                <img src="assets/dashboard-4.png" alt="One4Live OBS karaoke and SFX screen" />
+              </article>
+            </div>
+          </div>
+
+          <div class="slider-controls" aria-label="Screenshot controls">
+            <button class="slider-btn" type="button" data-slide-prev aria-label="Previous screenshot">
+              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="slider-dots" aria-label="Screenshot pages">
+              <button class="slider-dot is-active" type="button" data-slide-dot="0" aria-label="Show screenshot 1"></button>
+              <button class="slider-dot" type="button" data-slide-dot="1" aria-label="Show screenshot 2"></button>
+              <button class="slider-dot" type="button" data-slide-dot="2" aria-label="Show screenshot 3"></button>
+              <button class="slider-dot" type="button" data-slide-dot="3" aria-label="Show screenshot 4"></button>
+            </div>
+            <button class="slider-btn" type="button" data-slide-next aria-label="Next screenshot">
+              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="platforms">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="platformTitle">One command center for every live audience.</h2>
+          <p data-i18n="platformText">Connect multiple platforms at the same time while keeping each chat visually separated with brand-matched signal colors.</p>
+        </div>
+        <div class="platform-grid">
+          <article class="platform" style="--platform:#ff0000"><div class="tag">YT</div><h3>YouTube</h3><p data-i18n="youtubeText">Track guide viewers, live comments, and community engagement without losing stream focus.</p></article>
+          <article class="platform" style="--platform:#9146ff"><div class="tag">TW</div><h3>Twitch</h3><p data-i18n="twitchText">Read fast chat, filter signals, and keep supporter moments clean during high-speed sessions.</p></article>
+          <article class="platform" style="--platform:#00f2ea"><div class="tag">TT</div><h3>TikTok</h3><p data-i18n="tiktokText">Bring short-form live energy into the same dashboard with platform-aware message routing.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="featureTitle">Built around the secret sauce streamers actually feel.</h2>
+          <p data-i18n="featureText">One4Live is not a generic chat reader. It is tuned for Thai creators, multilingual audiences, and live-show pressure.</p>
+        </div>
+        <div class="features">
+          <article class="feature"><div class="icon">01</div><h3 data-i18n="f1Title">Multi-Platform Hub</h3><p data-i18n="f1Text">YouTube, Twitch, and TikTok can run together with quick filtering and distinct platform identity.</p></article>
+          <article class="feature"><div class="icon">02</div><h3 data-i18n="f2Title">Adaptive Karaoke TTS</h3><p data-i18n="f2Text">Foreign voices automatically slow by 20% for clearer Thai-Karaoke pronunciation.</p></article>
+          <article class="feature"><div class="icon">03</div><h3 data-i18n="f3Title">Live AI Translation</h3><p data-i18n="f3Text">Instant TH/EN translation appears in the dashboard and can be read aloud by TTS.</p></article>
+          <article class="feature"><div class="icon">04</div><h3 data-i18n="f4Title">Panic Stop System</h3><p data-i18n="f4Text">Disconnect instantly clears pending voice queues and silences leftover audio.</p></article>
+          <article class="feature"><div class="icon">05</div><h3 data-i18n="f5Title">Interactive SFX</h3><p data-i18n="f5Text">Membership-restricted keyword soundboard keeps reactions controlled and stream-safe.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="showcase">
+      <div class="container showcase">
+        <div class="section-head">
+          <h2 data-i18n="showcaseTitle">Professional controls for real live pressure.</h2>
+          <p data-i18n="showcaseText">The interface is dense, fast, and designed for repeated streamer operation: connect, filter, translate, speak, stop.</p>
+        </div>
+        <div class="console">
+          <div class="row"><span class="status"></span><div><strong data-i18n="consoleOneTitle">AI Translation Sync</strong><span data-i18n="consoleOneText">Dashboard and audio stay aligned.</span></div><span class="metric">ON</span></div>
+          <div class="row"><span class="status"></span><div><strong data-i18n="consoleTwoTitle">Karaoke Voice Guard</strong><span data-i18n="consoleTwoText">Foreign voice tempo optimized.</span></div><span class="metric">0.8x</span></div>
+          <div class="row"><span class="status"></span><div><strong data-i18n="consoleThreeTitle">Queue Protection</strong><span data-i18n="consoleThreeText">Ghost voices cleared on disconnect.</span></div><span class="metric">SAFE</span></div>
+          <div class="row"><span class="status"></span><div><strong data-i18n="consoleFourTitle">Member SFX Gate</strong><span data-i18n="consoleFourText">Keyword reactions stay restricted.</span></div><span class="metric">LOCKED</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="final-cta">
+          <h2 data-i18n="finalTitle">Upgrade your live control room today.</h2>
+          <p data-i18n="finalText">Download One4Live V2.3 Final and run a smarter, cleaner, more interactive stream across every platform.</p>
+          <div class="download-row" style="justify-content:center">
+            <a class="download" href="https://drive.google.com/file/d/1HQGCmLu6CsuOTcp0d1RuLARGWPWdR1xU/view?usp=sharing" target="_blank" rel="noopener"><span data-i18n="downloadGoogle">DOWNLOAD FROM GOOGLE DRIVE</span></a>
+            <a class="download secondary" href="https://www.mediafire.com/file/rc0dhgi33v2l5sm/One4Live.zip/file" target="_blank" rel="noopener"><span data-i18n="downloadMedia">DOWNLOAD MIRROR: MEDIAFIRE</span></a>
+          </div>
+          <div class="download-paths" style="margin:16px auto 0;text-align:left">
+            <div><strong data-i18n="googleLabel">Google Drive path:</strong> https://drive.google.com/file/d/1HQGCmLu6CsuOTcp0d1RuLARGWPWdR1xU/view?usp=sharing</div>
+            <div><strong data-i18n="mediaLabel">MediaFire path:</strong> https://www.mediafire.com/file/rc0dhgi33v2l5sm/One4Live.zip/file</div>
+          </div>
+          <div class="trust" style="margin:14px auto 0" data-i18n="trustNote">🛡️ 100% Protected Logic. If Windows Defender flags the app, select 'Run Anyway' to proceed.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>One4Live V2.3 Final</span>
+      <span data-i18n="footerText">Universal Streamer Intelligence for multilingual live creators.</span>
+    </div>
+  </footer>
+
+  <script>
+    const copy = {
+      en: {
+        brandSub: "V2.3 Final",
+        navPlatforms: "Platforms",
+        navFeatures: "Features",
+        navScreens: "Screens",
+        navShowcase: "Dashboard",
+        navDownload: "Download",
+        heroTitle: "The Only AI Assistant Your Stream Ever Needs.",
+        heroText: "Unify YouTube, Twitch, and TikTok chat with live AI translation, adaptive Thai-Karaoke TTS, and interactive SFX built for serious streamers.",
+        downloadBtn: "DOWNLOAD V2.3 FINAL",
+        downloadGoogle: "DOWNLOAD FROM GOOGLE DRIVE",
+        downloadMedia: "DOWNLOAD MIRROR: MEDIAFIRE",
+        googleLabel: "Google Drive path:",
+        mediaLabel: "MediaFire path:",
+        trustNote: "🛡️ 100% Protected Logic. If Windows Defender flags the app, select 'Run Anyway' to proceed.",
+        proofOne: "Live Platforms",
+        proofTwo: "Karaoke TTS Speed",
+        proofThree: "Translation + Voice",
+        platformTitle: "One command center for every live audience.",
+        platformText: "Connect multiple platforms at the same time while keeping each chat visually separated with brand-matched signal colors.",
+        youtubeText: "Track guide viewers, live comments, and community engagement without losing stream focus.",
+        twitchText: "Read fast chat, filter signals, and keep supporter moments clean during high-speed sessions.",
+        tiktokText: "Bring short-form live energy into the same dashboard with platform-aware message routing.",
+        featureTitle: "Built around the secret sauce streamers actually feel.",
+        featureText: "One4Live is not a generic chat reader. It is tuned for Thai creators, multilingual audiences, and live-show pressure.",
+        f1Title: "Multi-Platform Hub",
+        f1Text: "YouTube, Twitch, and TikTok can run together with quick filtering and distinct platform identity.",
+        f2Title: "Adaptive Karaoke TTS",
+        f2Text: "Foreign voices automatically slow by 20% for clearer Thai-Karaoke pronunciation.",
+        f3Title: "Live AI Translation",
+        f3Text: "Instant TH/EN translation appears in the dashboard and can be read aloud by TTS.",
+        f4Title: "Panic Stop System",
+        f4Text: "Disconnect instantly clears pending voice queues and silences leftover audio.",
+        f5Title: "Interactive SFX",
+        f5Text: "Membership-restricted keyword soundboard keeps reactions controlled and stream-safe.",
+        screensTitle: "Scroll through the real One4Live interface.",
+        screensText: "These screenshots show the actual streamer workflow: dashboard, soundboard, system configuration, OBS tools, karaoke rules, and SFX controls.",
+        screenOneTitle: "Live Dashboard",
+        screenOneText: "Multi-platform chat control with YouTube, Twitch, TikTok, live caption, translation, and TTS queue status.",
+        screenTwoTitle: "Manual Soundboard",
+        screenTwoText: "A clean soundboard surface for fast manual control and emergency stop during live moments.",
+        screenThreeTitle: "System Configuration",
+        screenThreeText: "AI engine, voice selection, translation direction, profanity filter, donation links, and karaoke mode in one control room.",
+        screenFourTitle: "OBS, Karaoke Rules, and SFX",
+        screenFourText: "Browser source setup, phonetic fixer rules, member-only SFX triggers, cooldowns, and system metrics.",
+        showcaseTitle: "Professional controls for real live pressure.",
+        showcaseText: "The interface is dense, fast, and designed for repeated streamer operation: connect, filter, translate, speak, stop.",
+        consoleOneTitle: "AI Translation Sync",
+        consoleOneText: "Dashboard and audio stay aligned.",
+        consoleTwoTitle: "Karaoke Voice Guard",
+        consoleTwoText: "Foreign voice tempo optimized.",
+        consoleThreeTitle: "Queue Protection",
+        consoleThreeText: "Ghost voices cleared on disconnect.",
+        consoleFourTitle: "Member SFX Gate",
+        consoleFourText: "Keyword reactions stay restricted.",
+        finalTitle: "Upgrade your live control room today.",
+        finalText: "Download One4Live V2.3 Final and run a smarter, cleaner, more interactive stream across every platform.",
+        footerText: "Universal Streamer Intelligence for multilingual live creators."
+      },
+      th: {
+        brandSub: "เวอร์ชัน V2.3 Final",
+        navPlatforms: "แพลตฟอร์ม",
+        navFeatures: "ฟีเจอร์",
+        navScreens: "ภาพโปรแกรม",
+        navShowcase: "แดชบอร์ด",
+        navDownload: "ดาวน์โหลด",
+        heroTitle: "ผู้ช่วย AI ตัวจริง สำหรับสตรีมเมอร์ระดับโปร",
+        heroText: "รวมแชท YouTube, Twitch และ TikTok ไว้ในที่เดียว พร้อมแปลสดด้วย AI, อ่านเสียง TTS แบบคาราโอเกะไทยชัดขึ้น และระบบ SFX สำหรับไลฟ์ที่คุมได้จริง",
+        downloadBtn: "ดาวน์โหลด V2.3 FINAL",
+        downloadGoogle: "ดาวน์โหลดจาก GOOGLE DRIVE",
+        downloadMedia: "ดาวน์โหลดสำรอง: MEDIAFIRE",
+        googleLabel: "ทางดาวน์โหลด Google Drive:",
+        mediaLabel: "ทางดาวน์โหลด MediaFire:",
+        trustNote: "🛡️ ระบบป้องกัน Logic 100% ถ้า Windows Defender แจ้งเตือน ให้เลือก 'Run Anyway' เพื่อใช้งานต่อ",
+        proofOne: "แพลตฟอร์มไลฟ์",
+        proofTwo: "ความเร็ว TTS คาราโอเกะ",
+        proofThree: "แปลภาษา + อ่านเสียง",
+        platformTitle: "ศูนย์ควบคุมเดียว สำหรับคนดูทุกแพลตฟอร์ม",
+        platformText: "เชื่อมต่อหลายแพลตฟอร์มพร้อมกัน และแยกแชทด้วยสีประจำแบรนด์เพื่อให้ดูง่ายระหว่างไลฟ์",
+        youtubeText: "ติดตามคอมเมนต์จากคนดูคลิปไกด์ ไลฟ์สด และชุมชน โดยไม่หลุดโฟกัสจากเกม",
+        twitchText: "อ่านแชทเร็ว กรองสัญญาณสำคัญ และจัดโมเมนต์ผู้สนับสนุนให้สะอาดระหว่างไลฟ์ที่แชทไหลไว",
+        tiktokText: "ดึงพลังจากไลฟ์สั้นเข้าสู่แดชบอร์ดเดียว พร้อมจัดเส้นทางข้อความตามแพลตฟอร์ม",
+        featureTitle: "ฟีเจอร์ลับที่สตรีมเมอร์รู้สึกได้จริงตอนใช้งาน",
+        featureText: "One4Live ไม่ใช่แค่โปรแกรมอ่านแชททั่วไป แต่ถูกจูนเพื่อครีเอเตอร์ไทย คนดูหลายภาษา และแรงกดดันตอนออกอากาศจริง",
+        f1Title: "ศูนย์รวมหลายแพลตฟอร์ม",
+        f1Text: "YouTube, Twitch และ TikTok ทำงานพร้อมกันได้ พร้อมปุ่มกรองเร็วและสีแยกแพลตฟอร์มชัดเจน",
+        f2Title: "TTS คาราโอเกะแบบปรับอัตโนมัติ",
+        f2Text: "เสียงต่างชาติจะถูกลดความเร็วลง 20% อัตโนมัติ เพื่อให้อ่านไทยคาราโอเกะชัดและฟังเป็นธรรมชาติขึ้น",
+        f3Title: "แปลสดด้วย AI",
+        f3Text: "แปล TH/EN ทันที แสดงในแดชบอร์ด และอ่านออกเสียงผ่าน TTS ได้",
+        f4Title: "ระบบ Panic Stop",
+        f4Text: "กด Disconnect แล้วล้างคิวเสียงค้างทันที ป้องกันเสียงหลอนหลังจบไลฟ์",
+        f5Title: "Interactive SFX",
+        f5Text: "ระบบ soundboard จาก keyword ที่จำกัดเฉพาะสมาชิก เพื่อให้เอฟเฟกต์สนุกแต่ยังคุมไลฟ์ได้",
+        screensTitle: "เลื่อนดูหน้าตา One4Live ของจริง",
+        screensText: "ภาพชุดนี้แสดง workflow จริงของสตรีมเมอร์: แดชบอร์ด, soundboard, ตั้งค่าระบบ, เครื่องมือ OBS, กฎคาราโอเกะ และ SFX",
+        screenOneTitle: "Live Dashboard",
+        screenOneText: "ควบคุมแชทหลายแพลตฟอร์มทั้ง YouTube, Twitch, TikTok พร้อม live caption, แปลภาษา และสถานะคิว TTS",
+        screenTwoTitle: "Manual Soundboard",
+        screenTwoText: "หน้าควบคุมเสียงแบบ manual สำหรับกดใช้เร็ว และหยุดเสียงฉุกเฉินระหว่างไลฟ์",
+        screenThreeTitle: "System Configuration",
+        screenThreeText: "รวม AI engine, เลือกเสียง, ทิศทางแปลภาษา, profanity filter, donation links และ karaoke mode ไว้ในที่เดียว",
+        screenFourTitle: "OBS, Karaoke Rules และ SFX",
+        screenFourText: "ตั้งค่า Browser Source, phonetic fixer, SFX เฉพาะสมาชิก, cooldown และ system metrics",
+        showcaseTitle: "คอนโทรลระดับโปร สำหรับสถานการณ์ไลฟ์จริง",
+        showcaseText: "อินเทอร์เฟซแน่น ชัด และเร็ว ออกแบบเพื่อใช้งานซ้ำทุกวัน: เชื่อมต่อ กรอง แปล อ่านเสียง และหยุดทันที",
+        consoleOneTitle: "ซิงก์แปลภาษา AI",
+        consoleOneText: "แดชบอร์ดและเสียงอ่านไปในทิศทางเดียวกัน",
+        consoleTwoTitle: "ตัวคุมเสียงคาราโอเกะ",
+        consoleTwoText: "ปรับ tempo เสียงต่างชาติให้เหมาะกับภาษาไทย",
+        consoleThreeTitle: "ป้องกันคิวเสียงค้าง",
+        consoleThreeText: "ล้างเสียงค้างทันทีเมื่อ Disconnect",
+        consoleFourTitle: "ล็อก SFX สำหรับสมาชิก",
+        consoleFourText: "จำกัด keyword reaction ให้ควบคุมได้",
+        finalTitle: "ยกระดับห้องควบคุมไลฟ์ของคุณวันนี้",
+        finalText: "ดาวน์โหลด One4Live V2.3 Final แล้วเริ่มไลฟ์แบบฉลาดขึ้น สะอาดขึ้น และโต้ตอบกับคนดูได้มากขึ้นทุกแพลตฟอร์ม",
+        footerText: "Universal Streamer Intelligence สำหรับครีเอเตอร์ไลฟ์หลายภาษา"
+      }
+    };
+
+    const root = document.documentElement;
+    const translatable = document.querySelectorAll("[data-i18n]");
+
+    function setLanguage(lang) {
+      root.dataset.lang = lang;
+      root.lang = lang;
+      translatable.forEach((node) => {
+        const key = node.dataset.i18n;
+        if (copy[lang][key]) node.textContent = copy[lang][key];
+      });
+      localStorage.setItem("one4live-lang", lang);
+    }
+
+    document.querySelectorAll("[data-set-lang]").forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.setLang));
+    });
+
+    setLanguage(localStorage.getItem("one4live-lang") || "en");
+
+    const track = document.querySelector(".screen-track");
+    const slides = Array.from(document.querySelectorAll(".screen-card"));
+    const dots = Array.from(document.querySelectorAll("[data-slide-dot]"));
+    const prev = document.querySelector("[data-slide-prev]");
+    const next = document.querySelector("[data-slide-next]");
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      currentSlide = (index + slides.length) % slides.length;
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("is-active", dotIndex === currentSlide);
+      });
+    }
+
+    prev.addEventListener("click", () => showSlide(currentSlide - 1));
+    next.addEventListener("click", () => showSlide(currentSlide + 1));
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => showSlide(Number(dot.dataset.slideDot)));
+    });
+  </script>
+</body>
+</html>

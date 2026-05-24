@@ -26,5 +26,5 @@ https://YOUR_USERNAME.github.io/REPOSITORY_NAME/
 
 ## Download Links
 
-- Google Drive: https://drive.google.com/file/d/1HQGCmLu6CsuOTcp0d1RuLARGWPWdR1xU/view?usp=sharing
-- MediaFire: https://www.mediafire.com/file/rc0dhgi33v2l5sm/One4Live.zip/file
+- Google Drive: https://drive.google.com/file/d/1gb7s62BavtP2-8qDktl5HCobKokXOpop/view?usp=sharing
+- MediaFire: unavailable for this build because the package is too large; use Google Drive.

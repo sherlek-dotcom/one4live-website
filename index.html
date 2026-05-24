@@ -242,6 +242,17 @@
       box-shadow: 0 0 0 1px rgba(255,255,255,.18) inset, 0 0 36px rgba(16,185,129,.34);
     }
 
+    .download.is-disabled {
+      cursor: not-allowed;
+      color: rgba(255,255,255,.72);
+      background: rgba(148,163,184,.18);
+      box-shadow: 0 0 0 1px rgba(255,255,255,.12) inset;
+      pointer-events: none;
+    }
+
+    .download.is-disabled::before { display: none; }
+    .download.is-disabled:hover { transform: none; box-shadow: 0 0 0 1px rgba(255,255,255,.12) inset; }
+
     .download-paths {
       display: grid;
       gap: 8px;
@@ -849,7 +860,7 @@
           <button type="button" data-set-lang="th">TH</button>
           <button type="button" data-set-lang="en">EN</button>
         </div>
-        <a class="mini-download" href="https://drive.google.com/file/d/1HQGCmLu6CsuOTcp0d1RuLARGWPWdR1xU/view?usp=sharing" target="_blank" rel="noopener" data-i18n="navDownload">Download</a>
+        <a class="mini-download" href="https://drive.google.com/file/d/1gb7s62BavtP2-8qDktl5HCobKokXOpop/view?usp=sharing" target="_blank" rel="noopener" data-i18n="navDownload">Download</a>
       </div>
     </div>
   </header>
@@ -862,12 +873,12 @@
           <p data-i18n="heroText">Unify YouTube, Twitch, and TikTok chat with live AI translation, adaptive Thai-Karaoke TTS, and interactive SFX built for serious streamers.</p>
           <div class="hero-actions">
             <div class="download-row">
-              <a class="download" href="https://drive.google.com/file/d/1HQGCmLu6CsuOTcp0d1RuLARGWPWdR1xU/view?usp=sharing" target="_blank" rel="noopener"><span data-i18n="downloadGoogle">DOWNLOAD FROM GOOGLE DRIVE</span></a>
-              <a class="download secondary" href="https://www.mediafire.com/file/rc0dhgi33v2l5sm/One4Live.zip/file" target="_blank" rel="noopener"><span data-i18n="downloadMedia">DOWNLOAD MIRROR: MEDIAFIRE</span></a>
+              <a class="download" href="https://drive.google.com/file/d/1gb7s62BavtP2-8qDktl5HCobKokXOpop/view?usp=sharing" target="_blank" rel="noopener"><span data-i18n="downloadGoogle">DOWNLOAD FROM GOOGLE DRIVE</span></a>
+              <a class="download secondary is-disabled" aria-disabled="true"><span data-i18n="downloadMedia">MIRROR UNAVAILABLE</span></a>
             </div>
             <div class="download-paths">
-              <div><strong data-i18n="googleLabel">Google Drive path:</strong> https://drive.google.com/file/d/1HQGCmLu6CsuOTcp0d1RuLARGWPWdR1xU/view?usp=sharing</div>
-              <div><strong data-i18n="mediaLabel">MediaFire path:</strong> https://www.mediafire.com/file/rc0dhgi33v2l5sm/One4Live.zip/file</div>
+              <div><strong data-i18n="googleLabel">Google Drive path:</strong> https://drive.google.com/file/d/1gb7s62BavtP2-8qDktl5HCobKokXOpop/view?usp=sharing</div>
+              <div><strong data-i18n="mediaLabel">Mirror note:</strong> <span data-i18n="mediaNote">MediaFire mirror is not available because the package is too large. Please use Google Drive.</span></div>
             </div>
             <div class="trust" data-i18n="trustNote">🛡️ 100% Protected Logic. If Windows Defender flags the app, select 'Run Anyway' to proceed.</div>
           </div>
@@ -1064,12 +1075,12 @@
           <h2 data-i18n="finalTitle">Upgrade your live control room today.</h2>
           <p data-i18n="finalText">Download One4Live V2.3 Final and run a smarter, cleaner, more interactive stream across every platform.</p>
           <div class="download-row" style="justify-content:center">
-            <a class="download" href="https://drive.google.com/file/d/1HQGCmLu6CsuOTcp0d1RuLARGWPWdR1xU/view?usp=sharing" target="_blank" rel="noopener"><span data-i18n="downloadGoogle">DOWNLOAD FROM GOOGLE DRIVE</span></a>
-            <a class="download secondary" href="https://www.mediafire.com/file/rc0dhgi33v2l5sm/One4Live.zip/file" target="_blank" rel="noopener"><span data-i18n="downloadMedia">DOWNLOAD MIRROR: MEDIAFIRE</span></a>
+            <a class="download" href="https://drive.google.com/file/d/1gb7s62BavtP2-8qDktl5HCobKokXOpop/view?usp=sharing" target="_blank" rel="noopener"><span data-i18n="downloadGoogle">DOWNLOAD FROM GOOGLE DRIVE</span></a>
+            <a class="download secondary is-disabled" aria-disabled="true"><span data-i18n="downloadMedia">MIRROR UNAVAILABLE</span></a>
           </div>
           <div class="download-paths" style="margin:16px auto 0;text-align:left">
-            <div><strong data-i18n="googleLabel">Google Drive path:</strong> https://drive.google.com/file/d/1HQGCmLu6CsuOTcp0d1RuLARGWPWdR1xU/view?usp=sharing</div>
-            <div><strong data-i18n="mediaLabel">MediaFire path:</strong> https://www.mediafire.com/file/rc0dhgi33v2l5sm/One4Live.zip/file</div>
+            <div><strong data-i18n="googleLabel">Google Drive path:</strong> https://drive.google.com/file/d/1gb7s62BavtP2-8qDktl5HCobKokXOpop/view?usp=sharing</div>
+            <div><strong data-i18n="mediaLabel">Mirror note:</strong> <span data-i18n="mediaNote">MediaFire mirror is not available because the package is too large. Please use Google Drive.</span></div>
           </div>
           <div class="trust" style="margin:14px auto 0" data-i18n="trustNote">🛡️ 100% Protected Logic. If Windows Defender flags the app, select 'Run Anyway' to proceed.</div>
         </div>
@@ -1098,9 +1109,10 @@
         heroText: "Unify YouTube, Twitch, and TikTok chat with live AI translation, adaptive Thai-Karaoke TTS, and interactive SFX built for serious streamers.",
         downloadBtn: "DOWNLOAD V2.3 FINAL",
         downloadGoogle: "DOWNLOAD FROM GOOGLE DRIVE",
-        downloadMedia: "DOWNLOAD MIRROR: MEDIAFIRE",
+        downloadMedia: "MIRROR UNAVAILABLE",
         googleLabel: "Google Drive path:",
-        mediaLabel: "MediaFire path:",
+        mediaLabel: "Mirror note:",
+        mediaNote: "MediaFire mirror is not available because the package is too large. Please use Google Drive.",
         trustNote: "🛡️ 100% Protected Logic. If Windows Defender flags the app, select 'Run Anyway' to proceed.",
         proofOne: "Live Platforms",
         proofTwo: "Karaoke TTS Speed",
@@ -1164,9 +1176,10 @@
         heroText: "รวมแชท YouTube, Twitch และ TikTok ไว้ในที่เดียว พร้อมแปลสดด้วย AI, อ่านเสียง TTS แบบคาราโอเกะไทยชัดขึ้น และระบบ SFX สำหรับไลฟ์ที่คุมได้จริง",
         downloadBtn: "ดาวน์โหลด V2.3 FINAL",
         downloadGoogle: "ดาวน์โหลดจาก GOOGLE DRIVE",
-        downloadMedia: "ดาวน์โหลดสำรอง: MEDIAFIRE",
+        downloadMedia: "มิเรอร์ยังไม่พร้อมใช้งาน",
         googleLabel: "ทางดาวน์โหลด Google Drive:",
-        mediaLabel: "ทางดาวน์โหลด MediaFire:",
+        mediaLabel: "หมายเหตุลิงก์สำรอง:",
+        mediaNote: "MediaFire mirror ยังไม่พร้อมใช้งาน เพราะไฟล์แพ็กเกจใหญ่เกินไป กรุณาดาวน์โหลดผ่าน Google Drive",
         trustNote: "🛡️ ระบบป้องกัน Logic 100% ถ้า Windows Defender แจ้งเตือน ให้เลือก 'Run Anyway' เพื่อใช้งานต่อ",
         proofOne: "แพลตฟอร์มไลฟ์",
         proofTwo: "ความเร็ว TTS คาราโอเกะ",

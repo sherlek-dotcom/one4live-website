@@ -366,7 +366,7 @@
 
     .platform-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 18px;
     }
 
@@ -419,8 +419,8 @@
 
     .features {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
     }
 
     .feature {
@@ -870,7 +870,7 @@
       <div class="container hero-grid">
         <div>
           <h1 data-i18n="heroTitle">The Only AI Assistant Your Stream Ever Needs.</h1>
-          <p data-i18n="heroText">Unify YouTube, Twitch, and TikTok chat with live AI translation, adaptive Thai-Karaoke TTS, and interactive SFX built for serious streamers.</p>
+          <p data-i18n="heroText">Unify YouTube, Twitch, TikTok, and Kick with live AI translation, adaptive Thai-Karaoke TTS, OBS Subtitle Custom Studio, and Drag & Drop Soundboard built for serious streamers.</p>
           <div class="hero-actions">
             <div class="download-row">
               <a class="download" href="https://drive.google.com/file/d/1HQGCmLu6CsuOTcp0d1RuLARGWPWdR1xU/view?usp=sharing" target="_blank" rel="noopener"><span data-i18n="downloadGoogle">DOWNLOAD FROM GOOGLE DRIVE</span></a>
@@ -883,9 +883,9 @@
             <div class="trust" data-i18n="trustNote">🛡️ 100% Protected Logic. If Windows Defender flags the app, select 'Run Anyway' to proceed.</div>
           </div>
           <div class="proofs">
-            <div class="proof"><strong>3</strong><span data-i18n="proofOne">Live Platforms</span></div>
-            <div class="proof"><strong>-20%</strong><span data-i18n="proofTwo">Karaoke TTS Speed</span></div>
-            <div class="proof"><strong>AI</strong><span data-i18n="proofThree">Translation + Voice</span></div>
+            <div class="proof"><strong>4</strong><span data-i18n="proofOne">Live Platforms (YT, TW, TT, KC)</span></div>
+            <div class="proof"><strong>18+</strong><span data-i18n="proofTwo">Translation Languages</span></div>
+            <div class="proof"><strong>1:1</strong><span data-i18n="proofThree">OBS Subtitle Studio</span></div>
           </div>
         </div>
 
@@ -1034,6 +1034,7 @@
           <article class="platform" style="--platform:#ff0000"><div class="tag">YT</div><h3>YouTube</h3><p data-i18n="youtubeText">Track guide viewers, live comments, and community engagement without losing stream focus.</p></article>
           <article class="platform" style="--platform:#9146ff"><div class="tag">TW</div><h3>Twitch</h3><p data-i18n="twitchText">Read fast chat, filter signals, and keep supporter moments clean during high-speed sessions.</p></article>
           <article class="platform" style="--platform:#00f2ea"><div class="tag">TT</div><h3>TikTok</h3><p data-i18n="tiktokText">Bring short-form live energy into the same dashboard with platform-aware message routing.</p></article>
+          <article class="platform" style="--platform:#53fc18"><div class="tag">KC</div><h3>Kick</h3><p data-i18n="kickText">Realtime WebSocket chat connection for fast-growing Kick streamer communities.</p></article>
         </div>
       </div>
     </section>
@@ -1045,11 +1046,12 @@
           <p data-i18n="featureText">One4Live is not a generic chat reader. It is tuned for Thai creators, multilingual audiences, and live-show pressure.</p>
         </div>
         <div class="features">
-          <article class="feature"><div class="icon">01</div><h3 data-i18n="f1Title">Multi-Platform Hub</h3><p data-i18n="f1Text">YouTube, Twitch, and TikTok can run together with quick filtering and distinct platform identity.</p></article>
-          <article class="feature"><div class="icon">02</div><h3 data-i18n="f2Title">Adaptive Karaoke TTS</h3><p data-i18n="f2Text">Foreign voices automatically slow by 20% for clearer Thai-Karaoke pronunciation.</p></article>
-          <article class="feature"><div class="icon">03</div><h3 data-i18n="f3Title">Live AI Translation</h3><p data-i18n="f3Text">Instant TH/EN translation appears in the dashboard and can be read aloud by TTS.</p></article>
-          <article class="feature"><div class="icon">04</div><h3 data-i18n="f4Title">Panic Stop System</h3><p data-i18n="f4Text">Disconnect instantly clears pending voice queues and silences leftover audio.</p></article>
-          <article class="feature"><div class="icon">05</div><h3 data-i18n="f5Title">Interactive SFX</h3><p data-i18n="f5Text">Membership-restricted keyword soundboard keeps reactions controlled and stream-safe.</p></article>
+          <article class="feature"><div class="icon">01</div><h3 data-i18n="f1Title">Multi-Platform Hub</h3><p data-i18n="f1Text">YouTube, Twitch, TikTok, and Kick run together with distinct badges and anti-spam filtering.</p></article>
+          <article class="feature"><div class="icon">02</div><h3 data-i18n="f2Title">OBS Subtitle Studio</h3><p data-i18n="f2Text">1:1 Chromium preview, Google Fonts, glow borders, dual-language subtitles, and live WebSocket sync.</p></article>
+          <article class="feature"><div class="icon">03</div><h3 data-i18n="f3Title">18+ Languages AI Router</h3><p data-i18n="f3Text">Independent spoken/translated language routing with 1-click fast swap button and live TTS.</p></article>
+          <article class="feature"><div class="icon">04</div><h3 data-i18n="f4Title">Soundboard Drag & Drop</h3><p data-i18n="f4Text">Dedicated Soundboard Studio with 1-click MP3 import, drag-and-drop reordering, and dashboard sync.</p></article>
+          <article class="feature"><div class="icon">05</div><h3 data-i18n="f5Title">Adaptive Karaoke TTS</h3><p data-i18n="f5Text">Natural voice synthesis, 200+ phonetic rules, profanity filter, and donation alert auto-pause.</p></article>
+          <article class="feature"><div class="icon">06</div><h3 data-i18n="f6Title">Zero-Setup Standalone</h3><p data-i18n="f6Text">Self-contained Onefile executable with bundled FFmpeg/FFplay. 100% persistent auto-saved settings.</p></article>
         </div>
       </div>
     </section>
@@ -1061,10 +1063,10 @@
           <p data-i18n="showcaseText">The interface is dense, fast, and designed for repeated streamer operation: connect, filter, translate, speak, stop.</p>
         </div>
         <div class="console">
-          <div class="row"><span class="status"></span><div><strong data-i18n="consoleOneTitle">AI Translation Sync</strong><span data-i18n="consoleOneText">Dashboard and audio stay aligned.</span></div><span class="metric">ON</span></div>
-          <div class="row"><span class="status"></span><div><strong data-i18n="consoleTwoTitle">Karaoke Voice Guard</strong><span data-i18n="consoleTwoText">Foreign voice tempo optimized.</span></div><span class="metric">0.8x</span></div>
-          <div class="row"><span class="status"></span><div><strong data-i18n="consoleThreeTitle">Queue Protection</strong><span data-i18n="consoleThreeText">Ghost voices cleared on disconnect.</span></div><span class="metric">SAFE</span></div>
-          <div class="row"><span class="status"></span><div><strong data-i18n="consoleFourTitle">Member SFX Gate</strong><span data-i18n="consoleFourText">Keyword reactions stay restricted.</span></div><span class="metric">LOCKED</span></div>
+          <div class="row"><span class="status"></span><div><strong data-i18n="consoleOneTitle">AI Translation Sync (18+ Langs)</strong><span data-i18n="consoleOneText">Dashboard, OBS subtitles, and TTS stay aligned.</span></div><span class="metric">ACTIVE</span></div>
+          <div class="row"><span class="status"></span><div><strong data-i18n="consoleTwoTitle">OBS 1:1 Live Subtitle Studio</strong><span data-i18n="consoleTwoText">Chromium web engine preview with Google Fonts & Dual Subtitles.</span></div><span class="metric">SYNCED</span></div>
+          <div class="row"><span class="status"></span><div><strong data-i18n="consoleThreeTitle">Soundboard Drag & Drop</strong><span data-i18n="consoleThreeText">Visual sound reordering with 1-click MP3/WAV import.</span></div><span class="metric">READY</span></div>
+          <div class="row"><span class="status"></span><div><strong data-i18n="consoleFourTitle">Streamer Safety & Donation Queue</strong><span data-i18n="consoleFourText">Profanity filter, duplicate suppression, and alert pause.</span></div><span class="metric">ARMED</span></div>
         </div>
       </div>
     </section>
@@ -1106,7 +1108,7 @@
         navShowcase: "Dashboard",
         navDownload: "Download",
         heroTitle: "The Only AI Assistant Your Stream Ever Needs.",
-        heroText: "Unify YouTube, Twitch, and TikTok chat with live AI translation, adaptive Thai-Karaoke TTS, and interactive SFX built for serious streamers.",
+        heroText: "Unify YouTube, Twitch, TikTok, and Kick with live AI translation, adaptive Thai-Karaoke TTS, OBS Subtitle Custom Studio, and Drag & Drop Soundboard built for serious streamers.",
         downloadBtn: "DOWNLOAD V2.3 FINAL",
         downloadGoogle: "DOWNLOAD FROM GOOGLE DRIVE",
         downloadMedia: "MIRROR UNAVAILABLE",
@@ -1114,9 +1116,9 @@
         mediaLabel: "Mirror note:",
         mediaNote: "MediaFire mirror is not available because the package is too large. Please use Google Drive.",
         trustNote: "🛡️ 100% Protected Logic. If Windows Defender flags the app, select 'Run Anyway' to proceed.",
-        proofOne: "Live Platforms",
-        proofTwo: "Karaoke TTS Speed",
-        proofThree: "Translation + Voice",
+        proofOne: "Live Platforms (YT, TW, TT, KC)",
+        proofTwo: "Translation Languages",
+        proofThree: "OBS Subtitle Studio",
         guideTitle: "Watch how to use One4Live.",
         guideText: "Start here if you want to see the setup flow, core controls, and live workflow before downloading.",
         findMeTitle: "Find me online.",
@@ -1128,18 +1130,21 @@
         youtubeText: "Track guide viewers, live comments, and community engagement without losing stream focus.",
         twitchText: "Read fast chat, filter signals, and keep supporter moments clean during high-speed sessions.",
         tiktokText: "Bring short-form live energy into the same dashboard with platform-aware message routing.",
+        kickText: "Realtime WebSocket chat connection for fast-growing Kick streamer communities.",
         featureTitle: "Built around the secret sauce streamers actually feel.",
         featureText: "One4Live is not a generic chat reader. It is tuned for Thai creators, multilingual audiences, and live-show pressure.",
         f1Title: "Multi-Platform Hub",
-        f1Text: "YouTube, Twitch, and TikTok can run together with quick filtering and distinct platform identity.",
-        f2Title: "Adaptive Karaoke TTS",
-        f2Text: "Foreign voices automatically slow by 20% for clearer Thai-Karaoke pronunciation.",
-        f3Title: "Live AI Translation",
-        f3Text: "Instant TH/EN translation appears in the dashboard and can be read aloud by TTS.",
-        f4Title: "Panic Stop System",
-        f4Text: "Disconnect instantly clears pending voice queues and silences leftover audio.",
-        f5Title: "Interactive SFX",
-        f5Text: "Membership-restricted keyword soundboard keeps reactions controlled and stream-safe.",
+        f1Text: "YouTube, Twitch, TikTok, and Kick run together with distinct badges and anti-spam filtering.",
+        f2Title: "OBS Subtitle Studio",
+        f2Text: "1:1 Chromium preview, Google Fonts, glow borders, dual-language subtitles, and live WebSocket sync.",
+        f3Title: "18+ Languages AI Router",
+        f3Text: "Independent spoken/translated language routing with 1-click fast swap button and live TTS.",
+        f4Title: "Soundboard Drag & Drop",
+        f4Text: "Dedicated Soundboard Studio with 1-click MP3 import, drag-and-drop reordering, and dashboard sync.",
+        f5Title: "Adaptive Karaoke TTS",
+        f5Text: "Natural voice synthesis, 200+ phonetic rules, profanity filter, and donation alert auto-pause.",
+        f6Title: "Zero-Setup Standalone",
+        f6Text: "Self-contained Onefile executable with bundled FFmpeg/FFplay. 100% persistent auto-saved settings.",
         screensTitle: "Scroll through the real One4Live interface.",
         screensText: "These screenshots show the actual streamer workflow: dashboard, soundboard, system configuration, OBS tools, karaoke rules, and SFX controls.",
         screenOneTitle: "Live Dashboard",
@@ -1173,7 +1178,7 @@
         navShowcase: "แดชบอร์ด",
         navDownload: "ดาวน์โหลด",
         heroTitle: "ผู้ช่วย AI ตัวจริง สำหรับสตรีมเมอร์ระดับโปร",
-        heroText: "รวมแชท YouTube, Twitch และ TikTok ไว้ในที่เดียว พร้อมแปลสดด้วย AI, อ่านเสียง TTS แบบคาราโอเกะไทยชัดขึ้น และระบบ SFX สำหรับไลฟ์ที่คุมได้จริง",
+        heroText: "รวมแชท YouTube, Twitch, TikTok และ Kick ไว้ในที่เดียว พร้อมแปลสดด้วย AI 18+ ภาษา, สตูดิโอออกแบบซับไตเติล OBS แบบ 1:1, ซาวด์บอร์ดลากสลับตำแหน่งได้ และ TTS คาราโอเกะภาษาไทยชัดเจน",
         downloadBtn: "ดาวน์โหลด V2.3 FINAL",
         downloadGoogle: "ดาวน์โหลดจาก GOOGLE DRIVE",
         downloadMedia: "มิเรอร์ยังไม่พร้อมใช้งาน",
@@ -1181,9 +1186,9 @@
         mediaLabel: "หมายเหตุลิงก์สำรอง:",
         mediaNote: "MediaFire mirror ยังไม่พร้อมใช้งาน เพราะไฟล์แพ็กเกจใหญ่เกินไป กรุณาดาวน์โหลดผ่าน Google Drive",
         trustNote: "🛡️ ระบบป้องกัน Logic 100% ถ้า Windows Defender แจ้งเตือน ให้เลือก 'Run Anyway' เพื่อใช้งานต่อ",
-        proofOne: "แพลตฟอร์มไลฟ์",
-        proofTwo: "ความเร็ว TTS คาราโอเกะ",
-        proofThree: "แปลภาษา + อ่านเสียง",
+        proofOne: "แพลตฟอร์มไลฟ์ (YT, TW, TT, KC)",
+        proofTwo: "ภาษาแปลสดด้วย AI",
+        proofThree: "สตูดิโอออกแบบซับ OBS",
         guideTitle: "ดูวิธีใช้ One4Live",
         guideText: "เริ่มจากวิดีโอนี้เพื่อดูขั้นตอนตั้งค่า ปุ่มควบคุมหลัก และ workflow ตอนใช้งานจริงก่อนดาวน์โหลด",
         findMeTitle: "ติดตามผมได้ที่นี่",
@@ -1195,18 +1200,21 @@
         youtubeText: "ติดตามคอมเมนต์จากคนดูคลิปไกด์ ไลฟ์สด และชุมชน โดยไม่หลุดโฟกัสจากเกม",
         twitchText: "อ่านแชทเร็ว กรองสัญญาณสำคัญ และจัดโมเมนต์ผู้สนับสนุนให้สะอาดระหว่างไลฟ์ที่แชทไหลไว",
         tiktokText: "ดึงพลังจากไลฟ์สั้นเข้าสู่แดชบอร์ดเดียว พร้อมจัดเส้นทางข้อความตามแพลตฟอร์ม",
-        featureTitle: "ฟีเจอร์ลับที่สตรีมเมอร์รู้สึกได้จริงตอนใช้งาน",
-        featureText: "One4Live ไม่ใช่แค่โปรแกรมอ่านแชททั่วไป แต่ถูกจูนเพื่อครีเอเตอร์ไทย คนดูหลายภาษา และแรงกดดันตอนออกอากาศจริง",
-        f1Title: "ศูนย์รวมหลายแพลตฟอร์ม",
-        f1Text: "YouTube, Twitch และ TikTok ทำงานพร้อมกันได้ พร้อมปุ่มกรองเร็วและสีแยกแพลตฟอร์มชัดเจน",
-        f2Title: "TTS คาราโอเกะแบบปรับอัตโนมัติ",
-        f2Text: "เสียงต่างชาติจะถูกลดความเร็วลง 20% อัตโนมัติ เพื่อให้อ่านไทยคาราโอเกะชัดและฟังเป็นธรรมชาติขึ้น",
-        f3Title: "แปลสดด้วย AI",
-        f3Text: "แปล TH/EN ทันที แสดงในแดชบอร์ด และอ่านออกเสียงผ่าน TTS ได้",
-        f4Title: "ระบบ Panic Stop",
-        f4Text: "กด Disconnect แล้วล้างคิวเสียงค้างทันที ป้องกันเสียงหลอนหลังจบไลฟ์",
-        f5Title: "Interactive SFX",
-        f5Text: "ระบบ soundboard จาก keyword ที่จำกัดเฉพาะสมาชิก เพื่อให้เอฟเฟกต์สนุกแต่ยังคุมไลฟ์ได้",
+        kickText: "เชื่อมต่อแชท Kick แบบ Realtime WebSocket สำหรับครีเอเตอร์และคอมมูนิตี้รุ่นใหม่",
+        featureTitle: "ฟีเจอร์ระดับมือโปรที่ออกแบบเพื่อสตรีมเมอร์ตัวจริง",
+        featureText: "One4Live ไม่ใช่แค่โปรแกรมอ่านแชททั่วไป แต่ถูกจูนเพื่อครีเอเตอร์ไทย คนดูหลายภาษา และรองรับสถานการณ์ไลฟ์จริงทุกรูปแบบ",
+        f1Title: "ศูนย์รวม 4 แพลตฟอร์มไลฟ์",
+        f1Text: "YouTube, Twitch, TikTok และ Kick ทำงานร่วมกัน พร้อมระบบกรองคำหยาบและระงับแชทสแปม",
+        f2Title: "สตูดิโอออกแบบซับ OBS สด",
+        f2Text: "Preview แบบ 1:1 ด้วย Chromium Web Engine, รองรับ Google Fonts, ขอบเรืองแสง และซับไตเติล 2 ภาษา",
+        f3Title: "ระบบแปลภาษา AI 18+ ภาษา",
+        f3Text: "เลือกจับคู่ภาษาพูดและภาษาแปลได้อิสระ พร้อมปุ่มสลับภาษาเร็วใน 1 คลิก และอ่านออกเสียงผ่าน TTS",
+        f4Title: "ซาวด์บอร์ดคลิกลากสลับตำแหน่ง",
+        f4Text: "แท็บจัดการ Soundboard Studio เฉพาะทาง นำเข้าไฟล์ MP3 ใน 1 คลิก พร้อมลากสลับลำดับเสียงและซิงค์หน้าแรกทันที",
+        f5Title: "TTS คาราโอเกะ & กฎการอ่าน 200+",
+        f5Text: "สังเคราะห์เสียงธรรมชาติ, อ่านคำสแลงและอีโมตได้ถูกต้อง, กรองคำหยาบ และหยุดเสียง TTS ชั่วคราวเมื่อมี Alert โดเนท",
+        f6Title: "พร้อมรันทันที ไม่ต้องลง Python",
+        f6Text: "ตัวโปรแกรมเป็นไฟล์ .exe แบบ Standalone มี FFmpeg/FFplay ในตัว พร้อมระบบบันทึกการตั้งค่าถาวร 100%",
         screensTitle: "เลื่อนดูหน้าตา One4Live ของจริง",
         screensText: "ภาพชุดนี้แสดง workflow จริงของสตรีมเมอร์: แดชบอร์ด, soundboard, ตั้งค่าระบบ, เครื่องมือ OBS, กฎคาราโอเกะ และ SFX",
         screenOneTitle: "Live Dashboard",
